@@ -19,29 +19,20 @@ class BooksApp extends Component {
   }
 
   getAllBooks = () => {
-    console.log("Get all books");
     BooksAPI.getAll().then((books) => {
-      console.log(books);
       this.setState({books});
     });
   }
 
   updateBookShelf = (book, shelf) => {
-    console.log("Update book shelf", {book, shelf});
-
     BooksAPI.update(book, shelf).then((books) => {
-      console.log(books);
       this.getAllBooks();
     });
   }
  
   searchBooks = (query, maxResults = 20) => {
-
-    console.log("Search books", {query, maxResults});
     if(query.length){
-      BooksAPI.search(query, maxResults)
-      .then((searchedBooks) => {
-        console.log(searchedBooks);
+      BooksAPI.search(query, maxResults).then((searchedBooks) => {
         let categorizedShelvedBooks = this.categorizeShelvedBooks(searchedBooks, this.state.books);
         this.setState({
           books: categorizedShelvedBooks,
@@ -52,20 +43,15 @@ class BooksApp extends Component {
 
 
   categorizeShelvedBooks = (searchedBooks, books) => {
-    console.log("categorizeShelvedBooks", {searchedBooks, books});
     return searchedBooks.map((searchedBook) => {
-
         books.map((book) => {
             if(searchedBook.id === book.id){
-              console.log("books mapping", {book,searchedBook});
               searchedBook = book;
             }
             return book;
         });
-
         return searchedBook;
     });
-
   }
 
 
@@ -82,7 +68,7 @@ class BooksApp extends Component {
             }} />
         )} />
       </div>
-    )
+    );
   }
 }
 
