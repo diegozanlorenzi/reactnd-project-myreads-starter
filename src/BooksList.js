@@ -1,9 +1,16 @@
 import React from 'react'
 
 function BooksList (props){
-    console.log("BooksList props ", props);
 
     let bookShelfs = [];
+
+    bookShelfs.push(
+        {
+            shelf: "none",
+            shelfName: "Not shelved books", 
+            books: props.books.filter((book) => (typeof book.shelf === 'undefined' ))
+        }
+    );
 
     bookShelfs.push(
         {
@@ -26,14 +33,6 @@ function BooksList (props){
             shelf: "read",
             shelfName: "Read", 
             books: props.books.filter((book) => (book.shelf === 'read'))
-        }
-    );
-
-    bookShelfs.push(
-        {
-            shelf: "none",
-            shelfName: "Not shelved books", 
-            books: props.books.filter((book) => (typeof book.shelf === 'undefined' ))
         }
     );
 

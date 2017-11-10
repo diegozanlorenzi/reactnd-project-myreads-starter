@@ -13,7 +13,6 @@ class BooksSearch extends Component{
     }
 
     updateQuery = (query) => {
-        console.log("update query", query);
         this.setState({ query: query.trim() });
         this.props.onSearchBooks(query);
     }
