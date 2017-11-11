@@ -1,16 +1,19 @@
 import React from 'react'
 
-function BooksList (props){
+const BooksList = (props) =>{
 
     let bookShelfs = [];
 
-    bookShelfs.push(
-        {
-            shelf: "none",
-            shelfName: "Not shelved books", 
-            books: props.books.filter((book) => (typeof book.shelf === 'undefined' ))
-        }
-    );
+    if(props.showSearchedBooks){
+        bookShelfs.push(
+            {
+                shelf: "none",
+                shelfName: "Not shelved books", 
+                books: props.books.filter((book) => (typeof book.shelf === 'undefined' ))
+            }
+        );
+    }
+
 
     bookShelfs.push(
         {

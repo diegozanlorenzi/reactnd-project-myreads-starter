@@ -22,7 +22,7 @@ class BooksSearch extends Component{
         return(
             <div className="search-books">
                 <div className="search-books-bar">
-                    <Link to="/" className="close-search">Close</Link>
+                    <Link to="/" className="close-search" onClick={() => this.props.onBackButtonClick()}>Close</Link>
                     <div className="search-books-input-wrapper">
                         <Debounce time="600" handler="onChange">
                             <input type="text" placeholder="Search by title or author" 
@@ -32,7 +32,7 @@ class BooksSearch extends Component{
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                        <BooksList books={this.props.books} onUpdateBookShelf={this.props.onUpdateBookShelf}/>
+                        <BooksList books={this.props.books} onUpdateBookShelf={this.props.onUpdateBookShelf} showSearchedBooks={true}/>
                     </ol>
                 </div>
             </div>

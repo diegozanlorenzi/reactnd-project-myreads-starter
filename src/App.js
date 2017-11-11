@@ -62,7 +62,7 @@ class BooksApp extends Component {
             <BooksShelf books={this.state.books} onUpdateBookShelf={this.updateBookShelf}/>
         )} />
         <Route exact path="/search" render={({history}) => (
-          <BooksSearch books={this.state.books} onSearchBooks={this.searchBooks} onUpdateBookShelf={ (book, shelf) => {
+          <BooksSearch books={this.state.books} onSearchBooks={this.searchBooks} onBackButtonClick={this.getAllBooks} onUpdateBookShelf={ (book, shelf) => {
               this.updateBookShelf(book,shelf)
               history.push('/')
             }} />
