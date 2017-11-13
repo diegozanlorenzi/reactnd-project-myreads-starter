@@ -32,28 +32,30 @@ class BooksApp extends Component {
  
   searchBooks = (query, maxResults = 20) => {
     if(query.length){
-      BooksAPI.search(query, maxResults).then((searchedBooks) => {
-        let categorizedShelvedBooks = this.categorizeShelvedBooks(searchedBooks, this.state.books);
-        this.setState({
-          books: categorizedShelvedBooks,
-        });
-      }).catch((exception) => {
-        alert("No book has been found with this query");
+      BooksAPI.getAll().then((books) => {
+        BooksAPI.search(query, maxResults).then((searchedBooks) => {
+              let categorizedShelvedBooks = this.categorizeShelvedBooks(searchedBooks, books);
+              this.setState({
+                books: categorizedShelvedBooks,
+              });
+          }).catch((exception) => {
+              alert("No book has been found with this query");
+          });
       });
     }
   }
 
 
   categorizeShelvedBooks = (searchedBooks, books) => {
-    return searchedBooks.map((searchedBook) => {
-        books.map((book) => {
-            if(searchedBook.id === book.id){
-              searchedBook = book;
-            }
-            return book;
-        });
-        return searchedBook;
-    });
+      return searchedBooks.map((searchedBook) => {
+          books.map((book) => {
+              if(searchedBook.id === book.id){
+                searchedBook = book;
+              }
+              return book;
+          });
+          return searchedBook;
+      });
   }
 
 

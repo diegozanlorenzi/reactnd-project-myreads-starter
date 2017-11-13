@@ -2,6 +2,9 @@ import React from 'react'
 
 const BooksList = (props) =>{
 
+    const filter = books => shelf => books.filter(book => book.shelf === shelf);
+    const filterBy = filter(props.books);
+    
     let bookShelfs = [];
 
     if(props.showSearchedBooks){
@@ -9,7 +12,7 @@ const BooksList = (props) =>{
             {
                 shelf: "none",
                 shelfName: "Not shelved books", 
-                books: props.books.filter((book) => (typeof book.shelf === 'undefined' ))
+                books: filterBy(undefined)
             }
         );
     }
@@ -19,7 +22,7 @@ const BooksList = (props) =>{
         {
             shelf: "currentlyReading",
             shelfName: "Currently Reading", 
-            books: props.books.filter((book) => (book.shelf === 'currentlyReading'))
+            books: filterBy("currentlyReading")
         }
     );
 
@@ -27,7 +30,7 @@ const BooksList = (props) =>{
         {
             shelf: "wantToRead",
             shelfName: "Want to Read", 
-            books: props.books.filter((book) => (book.shelf === 'wantToRead'))
+            books: filterBy("wantToRead")
         }
     );
 
@@ -35,7 +38,7 @@ const BooksList = (props) =>{
         {
             shelf: "read",
             shelfName: "Read", 
-            books: props.books.filter((book) => (book.shelf === 'read'))
+            books: filterBy("read")
         }
     );
 
