@@ -37,6 +37,8 @@ class BooksApp extends Component {
         this.setState({
           books: categorizedShelvedBooks,
         });
+      }).catch((exception) => {
+        alert("No book has been found with this query");
       });
     }
   }
